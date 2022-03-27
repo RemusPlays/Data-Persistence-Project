@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainManager : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class MainManager : MonoBehaviour
 
     public Text ScoreText;
     public GameObject GameOverText;
-    public Text currentPlayerName;
+    //public Text currentPlayerName;
+    public TextMeshProUGUI currentPlayerName;
     
     
     
@@ -44,7 +46,7 @@ public class MainManager : MonoBehaviour
 
 
 
-        currentPlayerName.text = RecordKeeper.Instance.playerInputName;
+        currentPlayerName.text = $"You got this, {RecordKeeper.Instance.playerInputName}!";
 
     }
 

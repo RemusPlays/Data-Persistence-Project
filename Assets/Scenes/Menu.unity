@@ -1527,4 +1527,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 672abc278f674eb40ac5248f15fd7193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNameInput: {fileID: 1876814147}
+  playerNameInput: {fileID: 926076662}
