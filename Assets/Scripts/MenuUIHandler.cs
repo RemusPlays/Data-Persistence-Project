@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,6 +13,8 @@ public class MenuUIHandler : MonoBehaviour
     //This is the handler of the main menu scene
 
     public InputField playerNameInput;
+    
+
 
     void Start()
     {
@@ -27,11 +30,10 @@ public class MenuUIHandler : MonoBehaviour
     public void SetPlayerName()
     {
         RecordKeeper.Instance.playerInputName = playerNameInput.text;
-        
-
-
 
     }
+
+
 
 
     public void StartGame()

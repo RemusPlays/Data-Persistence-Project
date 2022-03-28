@@ -13,15 +13,18 @@ public class MainManager : MonoBehaviour
 
     public Text ScoreText;
     public GameObject GameOverText;
-    //public Text currentPlayerName;
     public TextMeshProUGUI currentPlayerName;
-    
+    public TextMeshProUGUI bestPlayer;
+
+    public int currentScore;
+    public int highestScore;
     
     
     private bool m_Started = false;
     private int m_Points;
-    
     private bool m_GameOver = false;
+
+
 
     
     // Start is called before the first frame update
@@ -45,8 +48,9 @@ public class MainManager : MonoBehaviour
         }
 
 
-
         currentPlayerName.text = $"You got this, {RecordKeeper.Instance.playerInputName}!";
+        DisplayBestPlayer();
+
 
     }
 
@@ -70,6 +74,7 @@ public class MainManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                
             }
         }
 
@@ -90,5 +95,29 @@ public class MainManager : MonoBehaviour
         m_GameOver = true;
         GameOverText.SetActive(true);
         
+    }
+
+
+
+    public void CompareScore()
+    {
+        currentScore = m_Points;
+        if (currentScore > RecordKeeper.Instance.savedHighestScore)
+        {
+            highestScore = currentScore;
+            RecordKeeper.Instance.savedHighestScore = highestScore;
+            RecordKeeper.Instance.savedBestPlayer = RecordKeeper.Instance.playerInputName;
+            DisplayBestPlayer();
+
+
+
+        }
+
+
+    }
+
+    public void DisplayBestPlayer()
+    {
+        bestPlayer.text = $"Best Score: {RecordKeeper.Instance.savedBestPlayer}, {RecordKeeper.Instance.savedHighestScore}";
     }
 }

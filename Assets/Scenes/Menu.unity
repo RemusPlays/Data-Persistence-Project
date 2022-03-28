@@ -219,6 +219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputName: 
+  savedHighestScore: 0
+  bestPlayer: {fileID: 0}
 --- !u!4 &309406174
 Transform:
   m_ObjectHideFlags: 0
