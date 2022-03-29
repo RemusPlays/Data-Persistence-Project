@@ -7,6 +7,8 @@ using TMPro;
 
 public class MainManager : MonoBehaviour
 {
+    //This script controls the point system, gameover state, and the recording of highest score.
+    
     public Brick BrickPrefab;
     public int LineCount = 6;
     public Rigidbody Ball;
@@ -15,6 +17,7 @@ public class MainManager : MonoBehaviour
     public GameObject GameOverText;
     public TextMeshProUGUI currentPlayerName;
     public TextMeshProUGUI bestPlayer;
+    public Button returnToMenu;
 
     public int currentScore;
     public int highestScore;
@@ -24,14 +27,8 @@ public class MainManager : MonoBehaviour
     private int m_Points;
     private bool m_GameOver = false;
 
-
-
-    
-    // Start is called before the first frame update
     void Start()
     {
-        
-
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -46,12 +43,8 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
-
-
-        currentPlayerName.text = $"You got this, {RecordKeeper.Instance.playerInputName}!";
+        currentPlayerName.text = $"You got this {RecordKeeper.Instance.playerInputName}!";
         DisplayBestPlayer();
-
-
     }
 
     private void Update()
@@ -78,26 +71,20 @@ public class MainManager : MonoBehaviour
             }
         }
 
-     
     }
 
     void AddPoint(int point)
     {
         m_Points += point;
         ScoreText.text = $" Score: {m_Points}";
-        
-
-
     }
 
     public void GameOver()
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
-        
+        returnToMenu.gameObject.SetActive(true);
     }
-
-
 
     public void CompareScore()
     {
@@ -108,16 +95,12 @@ public class MainManager : MonoBehaviour
             RecordKeeper.Instance.savedHighestScore = highestScore;
             RecordKeeper.Instance.savedBestPlayer = RecordKeeper.Instance.playerInputName;
             DisplayBestPlayer();
-
-
-
         }
-
 
     }
 
     public void DisplayBestPlayer()
     {
-        bestPlayer.text = $"Best Score: {RecordKeeper.Instance.savedBestPlayer}, {RecordKeeper.Instance.savedHighestScore}";
+        bestPlayer.text = $"Best Score: {RecordKeeper.Instance.savedBestPlayer} {RecordKeeper.Instance.savedHighestScore}";
     }
 }
